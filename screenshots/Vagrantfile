@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "chad-thompson/ubuntu-trusty64-gui"
+
+  config.vm.provision "shell", path: "script.sh"
+  
+  config.vm.provider "virtualbox" do |vb|
+	vb.gui=false
+	vb.memory="4096"
+	vb.cpus=2
+	end
+	
+	config.vm.define "edMasterDG" do |masterDG|
+	masterDG.vm.hostname = "masterMachineDG.gac.local"
+	masterDG.vm.network "public_network", ip: "192.168.1.36"
+	masterDG.vm.synced_folder "sharedA", "/sharedA"
+	end
+	
+	config.vm.define "edAgentDG" do |agentDG|
+	agentDG.vm.hostname = "agentMachineDG.gac.local"
+	agentDG.vm.network "public_network", ip: "192.168.1.136"
+	agentDG.vm.network :forwarded_port, guest: 8080, host: 8080
+	agentDG.vm.synced_folder "sharedB", "/sharedB"
+	end
+
+ 
+end
