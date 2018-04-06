@@ -1,0 +1,18 @@
+.
+├── bin
+│   └── calcPackage
+│       ├── CalcMain.class
+│       └── CalculatorTest.class
+├── contents
+├── Contents.sh
+├── etc
+│   ├── contents
+│   └── tree.txt
+├── FileName.sh
+├── src
+│   └── calcPackage
+│       ├── CalcMain.java
+│       └── CalculatorTest.java
+└── tree.txt
+
+5 directories, 10 files
